@@ -6,6 +6,11 @@ metadata:
   labels:
     app: zabbix
     tier: frontend
+  template:
+    metadata:
+      labels:
+        name: zabbix-web
+        app: zabbix
 spec:
   replicas: 3
   template:
@@ -42,7 +47,12 @@ metadata:
   namespace: monitoring
   labels:
     app: zabbix
-    tier: zabbix-db
+    tier: zabbix-db  template:
+    metadata:
+      labels:
+        name: zabbix-db
+        app: zabbix
+        tier: zabbix-db
 spec:
   replicas: 1
   template:
@@ -78,6 +88,11 @@ metadata:
   namespace: monitoring
   labels:
     app: zabbix
+  template:
+    metadata:
+      labels:
+        name: zabbix-server
+        app: zabbix
 spec:
   replicas: 1
   template:
