@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+#    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+#    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+#    nginx.ingress.kubernetes.io/enable-underscores-in-headers: "true"
+#    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+  name: zabbix-ing
+  namespace: monitoring
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: zabbix.monylearning.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: zabbix-web
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
